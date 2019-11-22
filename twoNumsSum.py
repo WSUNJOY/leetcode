@@ -15,13 +15,24 @@ class Solution(object):
         :param target:
         :return:
         """
-        hashmap = {}
-        for ind, num in enumerate(nums):
-            hashmap[num] = ind
-        for i, num in enumerate(nums):
-            j = hashmap.get(target - num)
-            if j is not None and i != j:
-                return [i, j]
+        # hashmap = {}
+        # for ind, num in enumerate(nums):
+        #     hashmap[num] = ind
+        # for i, num in enumerate(nums):
+        #     j = hashmap.get(target - num)
+        #     if j is not None and i != j:
+        #         return [i, j]
+
+        len_nums = len(nums)
+        if len_nums == 0:
+            return []
+        for i in range(len_nums):
+            if target-nums[i] in nums:
+                if nums.count(nums[i]) == 1 and target-nums[i] == nums[i]:
+                    continue
+                else:
+                    return i,nums.index(target-nums[i], i+1)
+
 
 if __name__ == '__main__':
     nums = [2, 7, 11, 15]
